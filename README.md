@@ -1,1 +1,1 @@
-# qe-system
+# QE system
