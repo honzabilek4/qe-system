@@ -3,12 +3,86 @@ FORMAT: 1A
 # QE System
 REST Api for data communication with the QE System database.
 
-## Requirements collection [/requirement]
-Software requirements.
+//TODO: 
+ - Authentication scheme
+ - Query filtering
+ - Bulk insert?
+ 
+ 
 
-### List all requirements [GET] 
+## Table [/<table-name>]
+Name of the resource you want to access.
+
+### List all items [GET]
 + Response 200 (application/json)
-     {[
-        {requirement1: '...'},
-        {requirement1: '...'},
-     ]}
+        
+        {  
+          "data":[  
+            {  
+              "item1":"..."
+            },
+            {  
+              "item2":"..."
+            }]
+        }
+
+### Get single item [GET /<table-name>/{id}]
++ Response 200
+    
+        {
+            "item1": "..."
+        }
+
+### Join item with related data [GET /<table-name>/{id}/<related-table>] 
++ Response 200  (application/json)
+
+        {  
+          "item1": {
+            "<related-table>": [{'...'},{'...'}]
+          }
+        }
+
+
+### Create single item [POST /<table-name>]
++ Request (application/json)
+
+        {
+            "item1": "..."
+        }
+        
++ Response 201 (application/json)
+        
+        {
+            "item1": "..."
+        }
+
+### Create multiple items [POST /<table-name>]
++ Request (application/json)
+
+        {[
+            {"item1": "..."},
+            {"item2": "..."},
+        ]}
+
++ Response 201 (application/json)
+        
+        {[
+            {"item1": "..."},
+            {"item2": "..."},
+        ]}
+
+### Update sigle item [PUT /<table-name>/{id}]
++ Request (application/json)
+        
+        {
+            "item1": "..."
+        }
+        
++ Response 200 (application/json)
+        
+        {
+            "item1": ".."
+        }
+        
+### Delete single item [DELETE /<table-name>/{id}]
++ Response 200
