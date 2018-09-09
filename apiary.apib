@@ -4,13 +4,13 @@ FORMAT: 1A
 REST Api for data communication with the QE System database.
 
 //TODO: 
- - Authentication scheme
- - Query filtering
- - Bulk insert?
+ - *Authentication scheme?* Probably OAuth2
+ - *Query filtering?* There should be some query syntax to allow for filtering, sorting, etc.
+ - *Bulk insert?* We can send arrays with nested data.
+ - *Aggregations?* 
+ - *Joins?*
  
- 
-
-## Table [/<table-name>]
+## Table name [/<table-name>]
 Name of the resource you want to access.
 
 ### List all items [GET]
@@ -19,70 +19,97 @@ Name of the resource you want to access.
         {  
           "data":[  
             {  
-              "item1":"..."
+              "id":"..."
             },
             {  
-              "item2":"..."
+              "id":"..."
             }]
         }
 
 ### Get single item [GET /<table-name>/{id}]
++ Parameters
+    + id (string) - Id of an item to retrieve
+    
 + Response 200
     
         {
-            "item1": "..."
+            "id": "..."
         }
 
-### Join item with related data [GET /<table-name>/{id}/<related-table>] 
+### Join item with related data [GET /<table-name>/{id}/<related-table>]
+To get related items for a specific item, you can put name of the related table 
+after the id and you will get the related items. (1:N)
+
++ Parameters
+    + id (string) - Id of an item to retrieve
+    
 + Response 200  (application/json)
 
         {  
-          "item1": {
+          "id": {
             "<related-table>": [{'...'},{'...'}]
           }
         }
 
 
-### Create single item [POST /<table-name>]
-+ Request (application/json)
+### Creating items [POST /<table-name>]
+You can specify single or multiple items to create.
 
-        {
-            "item1": "..."
-        }
-        
-+ Response 201 (application/json)
-        
-        {
-            "item1": "..."
-        }
-
-### Create multiple items [POST /<table-name>]
 + Request (application/json)
 
         {[
-            {"item1": "..."},
-            {"item2": "..."},
+            {"id": "..."},
+            {"id": "..."},
         ]}
 
 + Response 201 (application/json)
         
         {[
-            {"item1": "..."},
-            {"item2": "..."},
+            {"id": "..."},
+            {"id": "..."},
         ]}
 
-### Update sigle item [PUT /<table-name>/{id}]
++ Request (application/json)
+
+        {
+            "id": "..."
+        }
+        
++ Response 201 (application/json)
+        
+        {
+            "id": "..."
+        }
+
+### Updating items [PUT /<table-name>/]
+Updating works the same as creating items.
+
 + Request (application/json)
         
         {
-            "item1": "..."
+            "id": "..."
         }
         
 + Response 200 (application/json)
         
         {
-            "item1": ".."
+            "id": ".."
         }
         
++ Request (application/json)
+
+        {[
+            {"id": "..."},
+            {"id": "..."},
+        ]}
+
++ Response 201 (application/json)
+        
+        {[
+            {"id": "..."},
+            {"id": "..."},
+        ]}
+        
 ### Delete single item [DELETE /<table-name>/{id}]
-+ Response 200
+
++ Response 204
