@@ -1,1 +1,1 @@
-console.log('QE System');
+console.log('QE System test');

@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/honzabilek4/qe-system#readme",
   "dependencies": {
+    "express": "^4.16.3",
     "pg": "^7.4.3"
   }
 }
