@@ -1,8 +1,7 @@
 version: '2.1'
 
 services:
-  qe-system:
-    image: qe-system
+  qe-system:    
     build: .
     environment:
       NODE_ENV: development
