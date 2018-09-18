@@ -1,10 +1,14 @@
-version: '2.1'
-
+# docker-compose.yml
+version: "3"
 services:
-  qe-system:    
+  app:
     build: .
-    environment:
-      NODE_ENV: production
+    depends_on:
+      - postgres
     ports:
-      - 3000:3000    
-    command: npm start
+      - "3000:3000"
+      - "9229:9229"
+  postgres:
+    image: postgres:9.6.8-alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
