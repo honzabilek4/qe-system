@@ -1,0 +1,10 @@
+{
+    "dev": {
+    "driver": "pg",
+    "user": "postgres",
+    "password": "postgres",
+    "host": "localhost:5433",
+    "database": "qe-system",
+    "schema": "public"
+  }
+}
