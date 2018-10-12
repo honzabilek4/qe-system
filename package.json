@@ -9,7 +9,7 @@
     "dev": "nodemon --inspect=0.0.0.0:9229 src/index.js",
     "migrate:create": "db-migrate create",
     "migrate:db:create": "db-migrate db:create",
-    "migrate:up": "db-migrate up"    
+    "migrate:up": "db-migrate up"
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,8 @@
     "db-migrate": "^0.11.3",
     "db-migrate-pg": "^0.4.0",
     "express": "^4.16.3",
-    "pg": "^7.4.3"
+    "pg": "^7.4.3",
+    "squel": "^5.12.2"
   },
   "devDependencies": {
     "config": "^2.0.1",
