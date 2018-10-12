@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { Client } = require('pg');
-const squel = require('squel').useFlavour('postgres');
+const squel = require('squel');
 
 const router = Router();
 
@@ -16,5 +16,17 @@ router.get('/:table', (request, response) => {
   });
 });
 
+router.post('/:table', (request, response) => {
+  const client = new Client(process.env.CONNECTION_STRING);
+  client.connect().catch((e) => {
+    console.log(e);
+  });
+  const query = squel.insert().into(request.params.table).setFields(request.body).toString();
+  client.query(query, (err, res) => {
+    // console.log(err, res);
+    response.send(request.body);
+    client.end();
+  });
+});
 
 module.exports = router;
