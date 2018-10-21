@@ -7,9 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js",
     "dev": "nodemon --inspect=0.0.0.0:9229 src/index.js",
-    "migrate:create": "db-migrate create",
+    "migrate:create": "db-migrate create initdb --sql-file",
     "migrate:db:create": "db-migrate db:create",
-    "migrate:up": "db-migrate up"
+    "migrate:up": "db-migrate up",
+    "migrate:down": "db-migrate down"
   },
   "repository": {
     "type": "git",
