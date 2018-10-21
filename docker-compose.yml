@@ -12,6 +12,7 @@ services:
     image: postgres:10.5-alpine
     restart: always
     environment:
-      POSTGRES_PASSWORD: postgres      
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: qe-system   
     ports:
      - "5433:5432"
