@@ -7,6 +7,7 @@ module.exports = {
       database: 'qe-system',
       user: 'postgres',
       password: 'postgres',
+      port: 5433,
     },
     pool: {
       min: 2,
@@ -22,6 +23,7 @@ module.exports = {
       database: 'qe-system',
       user: 'postgres',
       password: 'postgres',
+      port: 5433,
     },
     pool: {
       min: 2,
