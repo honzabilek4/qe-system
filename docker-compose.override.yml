@@ -8,4 +8,4 @@ services:
       - /home/app/node_modules
   db: 
     volumes: 
-      - ./.data:/home/db
+      - /home/db
