@@ -12,7 +12,7 @@ router.get('/:table', (request, response) => {
       response.send(data).json();
     })
     .catch((error) => {
-      response.send(error).json();
+      // response.send(error).json();
     });
 });
 
@@ -22,7 +22,7 @@ router.get('/:table/:id', (request, response) => {
       response.send(data).json();
     })
     .catch((error) => {
-      response.send(error).json();
+      // response.send(error).json();
     });
 });
 
@@ -32,7 +32,7 @@ router.post('/:table', (request, response) => {
       response.send(request.body).json();
     })
     .catch((error) => {
-      response.send(error).json();
+      // response.send(error).json();
     });
 });
 

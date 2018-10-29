@@ -15,6 +15,7 @@ module.exports = {
     },
     migrations: {
       tableName: 'knex_migrations',
+      schemaName: 'public',
     },
   },
   production: {
@@ -31,6 +32,7 @@ module.exports = {
     },
     migrations: {
       tableName: 'knex_migrations',
+      schemaName: 'public',
     },
   },
 
