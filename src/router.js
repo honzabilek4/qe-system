@@ -3,41 +3,23 @@ const SqlBuilder = require('knex')({
   client: 'pg',
   connection: process.env.CONNECTION_STRING,
 });
+const asyncHandler = require('./asyncHandler');
 
 const router = Router();
 
-router.get('/user', (request, response) => {
-  response.send('User endpoind success!');
-});
+router.get('/:table', asyncHandler(async (request, response) => {
+  const data = await SqlBuilder(request.params.table).select();
+  response.json(data);
+}));
 
-router.get('/:table', (request, response) => {
-  SqlBuilder(request.params.table).select()
-    .then((data) => {
-      response.send(data).json();
-    })
-    .catch((error) => {
-      response.send(error).json();
-    });
-});
+router.get('/:table/:id', asyncHandler(async (request, response) => {
+  const data = await SqlBuilder(request.params.table).select().where({ id: request.params.id });
+  response.json(data);
+}));
 
-router.get('/:table/:id', (request, response) => {
-  SqlBuilder(request.params.table).select().where({ id: request.params.id })
-    .then((data) => {
-      response.send(data).json();
-    })
-    .catch((error) => {
-      response.send(error).json();
-    });
-});
-
-router.post('/:table', (request, response) => {
-  SqlBuilder(request.params.table).insert(request.body)
-    .then(() => {
-      response.send(request.body).json();
-    })
-    .catch((error) => {
-      response.send(error).json();
-    });
-});
+router.post('/:table', asyncHandler(async (request, response) => {
+  const data = await SqlBuilder(request.params.table).insert(request.body).returning('*');
+  response.json(data);
+}));
 
 module.exports = router;
