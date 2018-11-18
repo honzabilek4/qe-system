@@ -6,13 +6,17 @@ const SqlBuilder = require('knex')({
 
 const router = Router();
 
+router.get('/user', (request, response) => {
+  response.send('User endpoind success!');
+});
+
 router.get('/:table', (request, response) => {
   SqlBuilder(request.params.table).select()
     .then((data) => {
       response.send(data).json();
     })
     .catch((error) => {
-      // response.send(error).json();
+      response.send(error).json();
     });
 });
 
@@ -22,7 +26,7 @@ router.get('/:table/:id', (request, response) => {
       response.send(data).json();
     })
     .catch((error) => {
-      // response.send(error).json();
+      response.send(error).json();
     });
 });
 
@@ -32,7 +36,7 @@ router.post('/:table', (request, response) => {
       response.send(request.body).json();
     })
     .catch((error) => {
-      // response.send(error).json();
+      response.send(error).json();
     });
 });
 
