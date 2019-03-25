@@ -1,4 +1,4 @@
-FROM node:8.10.0-alpine
+FROM node:10.15-alpine
 EXPOSE 3000 9229
 WORKDIR /home/app
 COPY ./package.json /home/app

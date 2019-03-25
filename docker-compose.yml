@@ -9,7 +9,7 @@ services:
       - "3000:3000"
       - "9229:9229"
   db:
-    image: postgres:10.5-alpine
+    image: postgres:11.2-alpine
     restart: always
     environment:
       POSTGRES_PASSWORD: postgres
